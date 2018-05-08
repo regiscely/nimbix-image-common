@@ -65,6 +65,7 @@ function build_and_install_tiger() {
     make install
 }
 
+
 export DEBIAN_FRONTEND=noninteractive
 #apt-get -y update
 #apt-get -y install software-properties-common
@@ -79,7 +80,12 @@ apt-get -y install wget python python-gtk2 gnome-icon-theme \
 if [ "$ARCH" != "x86_64" ]; then
     build_and_install_tiger
 else
-    wget --content-disposition -O - "$TIGERVNC" |tar -C / -xzf - --strip-components=1
+    if grep -q bionic /etc/lsb-release; then
+        echo "bionic install"
+        apt -y install tigervnc-common tigervnc-standalone-server
+    else
+        wget --content-disposition -O - "$TIGERVNC" |tar -C / -xzf - --strip-components=1
+    fi
 
     cd /tmp
     wget --content-disposition "$VGL64"
