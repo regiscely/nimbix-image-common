@@ -67,6 +67,7 @@ function build_and_install_tiger() {
 
 
 export DEBIAN_FRONTEND=noninteractive
+mkdir -p /etc/gdm3
 echo "WaylandEnable=false"  > /etc/gdm3/custom.conf
 #apt-get -y update
 #apt-get -y install software-properties-common
