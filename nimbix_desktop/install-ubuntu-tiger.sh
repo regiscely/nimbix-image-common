@@ -78,14 +78,14 @@ apt-get -y install librtmp0 || apt-get -y install librtmp1
 #    humanity-icon-theme tango-icon-theme xfce4 xfce4-terminal xterm \
 #    fonts-freefont-ttf xfonts-base xfonts-100dpi xfonts-75dpi \
 #    xfonts-scalable xauth firefox ristretto mesa-utils init-system-helpers
-apt -y install xfce firefox
+apt -y install xfce4 firefox
 
 if [ "$ARCH" != "x86_64" ]; then
     build_and_install_tiger
 else
     if grep -q bionic /etc/lsb-release; then
         echo "bionic install"
-        apt -y install tigervnc-common tigervnc-standalone-server xfce4
+        apt -y install tigervnc-common tigervnc-standalone-server
     else
         wget --content-disposition -O - "$TIGERVNC" |tar -C / -xzf - --strip-components=1
     fi
