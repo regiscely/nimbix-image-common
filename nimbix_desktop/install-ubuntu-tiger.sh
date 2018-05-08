@@ -78,7 +78,7 @@ apt-get -y install librtmp0 || apt-get -y install librtmp1
 #    humanity-icon-theme tango-icon-theme xfce4 xfce4-terminal xterm \
 #    fonts-freefont-ttf xfonts-base xfonts-100dpi xfonts-75dpi \
 #    xfonts-scalable xauth firefox ristretto mesa-utils init-system-helpers
-apt -y install xfce4 firefox
+apt -y install xfce4 firefox xfce4-terminal xterm
 
 if [ "$ARCH" != "x86_64" ]; then
     build_and_install_tiger
@@ -97,4 +97,4 @@ else
 fi
 apt-get clean
 
-#. $dirname/postinstall-tiger.sh
+. $dirname/postinstall-tiger.sh
