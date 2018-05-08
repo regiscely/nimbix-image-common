@@ -67,22 +67,24 @@ function build_and_install_tiger() {
 
 
 export DEBIAN_FRONTEND=noninteractive
+echo "WaylandEnable=false"  > /etc/gdm3/custom.conf
 #apt-get -y update
 #apt-get -y install software-properties-common
 #add-apt-repository -y ppa:canonical-x/x-staging  # latest xorg server
 apt-get -y update
 apt-get -y install librtmp0 || apt-get -y install librtmp1
-apt-get -y install wget python python-gtk2 gnome-icon-theme \
-    humanity-icon-theme tango-icon-theme xfce4 xfce4-terminal xterm \
-    fonts-freefont-ttf xfonts-base xfonts-100dpi xfonts-75dpi \
-    xfonts-scalable xauth firefox ristretto mesa-utils init-system-helpers
+#apt-get -y install wget python python-gtk2 gnome-icon-theme \
+#    humanity-icon-theme tango-icon-theme xfce4 xfce4-terminal xterm \
+#    fonts-freefont-ttf xfonts-base xfonts-100dpi xfonts-75dpi \
+#    xfonts-scalable xauth firefox ristretto mesa-utils init-system-helpers
+apt -y install xfce firefox
 
 if [ "$ARCH" != "x86_64" ]; then
     build_and_install_tiger
 else
     if grep -q bionic /etc/lsb-release; then
         echo "bionic install"
-        apt -y install tigervnc-common tigervnc-standalone-server
+        apt -y install tigervnc-common tigervnc-standalone-server xfce
     else
         wget --content-disposition -O - "$TIGERVNC" |tar -C / -xzf - --strip-components=1
     fi
@@ -94,4 +96,4 @@ else
 fi
 apt-get clean
 
-. $dirname/postinstall-tiger.sh
+#. $dirname/postinstall-tiger.sh
