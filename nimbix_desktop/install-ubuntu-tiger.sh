@@ -85,7 +85,7 @@ if [ "$ARCH" != "x86_64" ]; then
 else
     if grep -q bionic /etc/lsb-release; then
         echo "bionic install"
-        apt -y install tigervnc-common tigervnc-standalone-server xfce
+        apt -y install tigervnc-common tigervnc-standalone-server xfce4
     else
         wget --content-disposition -O - "$TIGERVNC" |tar -C / -xzf - --strip-components=1
     fi
