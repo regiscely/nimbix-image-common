@@ -61,9 +61,7 @@ function setup_base_os() {
     PKGS="curl zip unzip sudo"
     if [ -f /etc/redhat-release ]; then
         if [ ! -f /etc/fedora-release ]; then
-            VERSION_ID=$(cat /etc/system-release-cpe | awk -F: '{print $5}')
-            EPEL="https://dl.fedoraproject.org/pub/epel/epel-release-latest-${VERSION_ID}.noarch.rpm"
-            rpm -Uv $EPEL || /bin/true
+            PKGS+=" epel-release"
         fi
         PKGS+=" passwd xz tar file openssh-server infiniband-diags"
         PKGS+=" openmpi perftest libibverbs-utils libmthca libcxgb4 libmlx4"
@@ -103,8 +101,11 @@ function setup_base_os() {
         PKGS+=" libmlx4-1 libmlx5-1 iptables infiniband-diags build-essential"
         PKGS+=" libibverbs-dev libibverbs1 librdmacm1 librdmacm-dev"
         PKGS+=" rdmacm-utils libibmad-dev libibmad5 byacc flex git cmake"
-        PKGS+=" screen grep locales net-tools python"
+        PKGS+=" screen grep locales net-tools"
         PKGS+=" shellinabox openssh-client sshpass"
+        if [ ! -e /usr/bin/python ]; then
+            PKGS+=" python python-pip"
+        fi
 
         # unfortunately on Ubuntu we can't skip the apt-get update since
         # most images have broken cache, so we have to do it anyway
