@@ -86,11 +86,11 @@ export DEBIAN_FRONTEND=noninteractive
 #add-apt-repository -y ppa:canonical-x/x-staging  # latest xorg server
 apt-get -y update
 apt-get -y install librtmp0 || apt-get -y install librtmp1
-apt-get -y install wget gnome-icon-theme-full \
+apt-get -y install wget gnome-icon-theme xterm \
     humanity-icon-theme tango-icon-theme xfce4 xfce4-terminal \
     fonts-freefont-ttf xfonts-base xfonts-100dpi xfonts-75dpi x11-apps \
     xfonts-scalable xauth firefox ristretto mesa-utils init-system-helpers \
-    libxcb1 libxcb-keysyms1 libxcb-util1 xterm
+    libxcb1 libxcb-keysyms1 libxcb-util1
 
 # from the original bionic work
 #apt-get -y install wget python python-gtk2 gnome-icon-theme \
