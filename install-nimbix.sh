@@ -23,6 +23,10 @@ while [ $# -gt 0 ]; do
             export SKIP_OS_PKG_UPDATE=1
             shift
             ;;
+        --skip-infiniband)
+            export SKIP_IB_PKGS=1
+            shift
+            ;;
         --image-common-branch)
             BRANCH=$2
             shift; shift
@@ -63,12 +67,18 @@ function setup_base_os() {
         if [ ! -f /etc/fedora-release ]; then
             PKGS+=" epel-release"
         fi
-        PKGS+=" passwd xz tar file openssh-server infiniband-diags"
-        PKGS+=" openmpi perftest libibverbs-utils libmthca libcxgb4 libmlx4"
-        PKGS+=" libmlx5 dapl compat-dapl dapl.i686 compat-dapl.i686 which"
-        PKGS+=" openssh-clients sshpass mailcap"
+
+        PKGS+=" passwd xz tar file openssh-server which"
+        PKGS+=" openssh-clients sshpass mailcap openmpi"
+
+        if [[ -z "$SKIP_IB_PKGS" ]]; then
+            PKGS+=" perftest libibverbs-utils libmthca libcxgb4 libmlx4"
+            PKGS+=" libmlx5 dapl compat-dapl dapl.i686 compat-dapl.i686"
+            PKGS+=" rdma-core rdma-core.i686 infiniband-diags"
+        fi
+
         [ -z "$SKIP_OS_PKG_UPDATE" ] && yum -y update
-        yum -y install $PKGS
+        yum -y install "$PKGS"
         yum clean all
 
         # Set locale
