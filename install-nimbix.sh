@@ -69,12 +69,12 @@ function setup_base_os() {
         fi
 
         PKGS+=" passwd xz tar file openssh-server which"
-        PKGS+=" openssh-clients sshpass mailcap openmpi"
+        PKGS+=" openssh-clients sshpass mailcap"
 
         if [[ -z "$SKIP_IB_PKGS" ]]; then
             PKGS+=" perftest libibverbs-utils libmthca libcxgb4 libmlx4"
             PKGS+=" libmlx5 dapl compat-dapl dapl.i686 compat-dapl.i686"
-            PKGS+=" rdma-core rdma-core.i686 infiniband-diags"
+            PKGS+=" rdma-core rdma-core.i686 infiniband-diags openmpi"
         fi
 
         [ -z "$SKIP_OS_PKG_UPDATE" ] && yum -y update
