@@ -78,7 +78,7 @@ function setup_base_os() {
         fi
 
         [ -z "$SKIP_OS_PKG_UPDATE" ] && yum -y update
-        yum -y install "$PKGS"
+        yum -y install $PKGS
         yum clean all
 
         # Set locale
