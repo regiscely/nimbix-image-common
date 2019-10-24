@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 set -x
@@ -54,7 +54,7 @@ EOF
 )"
 
 [ -e /etc/system-release-cpe ] && \
-    VERSION_ID=$(cat /etc/system-release-cpe | awk -F: '{print $5}')
+    VERSION_ID=$(awk -F: '{print $5}' /etc/system-release-cpe)
 
 # Base OS
 function setup_base_os() {
