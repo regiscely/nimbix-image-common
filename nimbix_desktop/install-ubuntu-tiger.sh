@@ -17,7 +17,7 @@ VGL64SRC="https://downloads.sourceforge.net/project/virtualgl/$VGL64VER/VirtualG
 dirname=$(dirname $0)
 
 function build_and_install_tiger() {
-    apt-get -y install build-essential git cmake libx11-dev zlib1g-dev \
+    apt-get -y install build-essential git cmake libx11-dev zlib1g-dev epoxy* libgbm* \
         gettext libfltk1.3-dev libxrender-dev autoconf automake autopoint \
         libtool pkg-config bison flex gperf m4 libncurses5-dev \
         intltool llvm libtalloc-dev libgbm1 libmtdev-dev libgcrypt20-dev \
