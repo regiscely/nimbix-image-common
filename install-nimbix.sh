@@ -144,12 +144,12 @@ function setup_jarvice_emulation {
         >/tmp/nimbix.zip
     unzip nimbix.zip
     rm -f nimbix.zip
-    /tmp/image-common-$BRANCH/setup-nimbix.sh
+    /tmp/nimbix-image-common-$BRANCH/setup-nimbix.sh
 
     mkdir -p /usr/lib/JARVICE
-    cp -a /tmp/image-common-$BRANCH/tools /usr/lib/JARVICE
+    cp -a /tmp/nimbix-image-common-$BRANCH/tools /usr/lib/JARVICE
     mkdir -p /usr/local/JARVICE
-    cp -a /tmp/image-common-$BRANCH/tools /usr/local/JARVICE
+    cp -a /tmp/nimbix-image-common-$BRANCH/tools /usr/local/JARVICE
     cat <<'EOF' | tee /etc/profile.d/jarvice-tools.sh >/dev/null
 JARVICE_TOOLS="/usr/local/JARVICE/tools"
 JARVICE_TOOLS_BIN="$JARVICE_TOOLS/bin"
@@ -159,7 +159,7 @@ EOF
 
     cd /tmp
     mkdir -p /etc/JARVICE
-    cp -a /tmp/image-common-$BRANCH/etc/* /etc/JARVICE
+    cp -a /tmp/nimbix-image-common-$BRANCH/etc/* /etc/JARVICE
     chmod 755 /etc/JARVICE
     mkdir -m 0755 -p /data
     chown nimbix:nimbix /data
@@ -176,7 +176,7 @@ function setup_nimbix_desktop() {
     files+=" help-tiger.html postinstall-tiger.sh"
     files+=" nimbix_desktop url.txt xfce4-session-logout share skel.config"
     for i in $files; do
-        cp -a /tmp/image-common-$BRANCH/nimbix_desktop/$i \
+        cp -a /tmp/nimbix-image-common-$BRANCH/nimbix_desktop/$i \
             /usr/local/lib/nimbix_desktop
     done
     if [ -f /etc/redhat-release ]; then
@@ -214,7 +214,7 @@ function cleanup() {
     else # Ubuntu
         apt-get clean
     fi
-    rm -rf /tmp/image-common-$BRANCH
+    rm -rf /tmp/nimbix-image-common-$BRANCH
 }
 
 setup_base_os
