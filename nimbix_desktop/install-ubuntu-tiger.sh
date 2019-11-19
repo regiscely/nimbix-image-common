@@ -25,9 +25,9 @@ function build_and_install_tiger() {
         xutils-dev xfonts-utils xserver-xorg-dev libpixman-1-dev \
         x11proto-record-dev x11proto-xcmisc-dev x11proto-bigreqs-dev \
         x11proto-composite-dev libjpeg-turbo8 libjpeg-turbo8-dev  \
-        libxfont1-dev libxaw7-dev perl-modules xfonts-base \
+        libxfont-dev libxaw7-dev perl-modules xfonts-base \
         libxau-dev libxext-dev libxi-dev libxkbfile-dev libxmu-dev libxt-dev \
-        x11proto-core-dev libgnutls-dev libpam0g-dev libpng12-dev \
+        x11proto-core-dev libgnutls28-dev libpam0g-dev libpng-dev \
         x11proto-damage-dev x11proto-dri2-dev x11proto-fixes-dev \
         x11proto-fonts-dev x11proto-gl-dev x11proto-input-dev x11proto-kb-dev \
         x11proto-randr-dev x11proto-render-dev x11proto-resource-dev \
