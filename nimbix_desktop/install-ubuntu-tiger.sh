@@ -52,6 +52,7 @@ function build_and_install_tiger() {
     wget --content-disposition -O - "$XORGSRC" |tar -C /tmp -xzf -
     cp -R /tmp/xorg-server-$XORGVER/* $BUILD_DIR/unix/xserver/
     cd $BUILD_DIR/unix/xserver
+    #wget https://raw.githubusercontent.com/TigerVNC/tigervnc/master/unix/xserver120.patch
     patch -p1 < "$TIGERVNC_SOURCE/unix/xserver120.patch"
     autoreconf -fiv
     ./configure --prefix=/usr --with-pic --without-dtrace \
