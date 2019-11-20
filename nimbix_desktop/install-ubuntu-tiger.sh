@@ -8,7 +8,7 @@ SRCVERSION=1.8.0
 TIGERVNC="https://bintray.com/tigervnc/stable/download_file?file_path=tigervnc-$BINVERSION.$ARCH.tar.gz"
 TIGERSRC="https://github.com/TigerVNC/tigervnc/archive/v$SRCVERSION.tar.gz"
 
-XORGVER=1.20.5
+XORGVER=1.19.7
 XORGSRC="https://www.x.org/archive//individual/xserver/xorg-server-$XORGVER.tar.gz"
 
 VGL64VER=2.6.1
@@ -53,7 +53,7 @@ function build_and_install_tiger() {
     cp -R /tmp/xorg-server-$XORGVER/* $BUILD_DIR/unix/xserver/
     cd $BUILD_DIR/unix/xserver
     #wget https://raw.githubusercontent.com/TigerVNC/tigervnc/master/unix/xserver120.patch
-    patch -p1 < "$TIGERVNC_SOURCE/unix/xserver120.patch"
+    patch -p1 < "$TIGERVNC_SOURCE/unix/xserver119.patch"
     autoreconf -fiv
     ./configure --prefix=/usr --with-pic --without-dtrace \
         --disable-static --disable-dri \
