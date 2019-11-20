@@ -52,7 +52,7 @@ function build_and_install_tiger() {
     wget --content-disposition -O - "$XORGSRC" |tar -C /tmp -xzf -
     cp -R /tmp/xorg-server-$XORGVER/* $BUILD_DIR/unix/xserver/
     cd $BUILD_DIR/unix/xserver
-    #patch -p1 < "$TIGERVNC_SOURCE/unix/xserver118.patch"
+    patch -p1 < "$TIGERVNC_SOURCE/unix/xserver120.patch"
     autoreconf -fiv
     ./configure --prefix=/usr --with-pic --without-dtrace \
         --disable-static --disable-dri \
